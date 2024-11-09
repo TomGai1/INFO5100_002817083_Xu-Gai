@@ -1,4 +1,4 @@
-package exercise3;
+package exercise3b;
 
 public class Square extends Rectangle {
     private static final long serialVersionUID = 1L;
