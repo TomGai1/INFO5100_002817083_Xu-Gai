@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<BookShelf>
+  <Book>
+    <title>The Great Gatsby</title>
+    <publishedYear>1925</publishedYear>
+    <numberOfPages>180</numberOfPages>
+    <authors>
+      <author>F. Scott Fitzgerald</author>
+    </authors>
+  </Book>
+  <Book>
+    <title>1984</title>
+    <publishedYear>1949</publishedYear>
+    <numberOfPages>328</numberOfPages>
+    <authors>
+      <author>George Orwell</author>
+    </authors>
+  </Book>
+  <Book>
+    <title>Good Omens</title>
+    <publishedYear>1990</publishedYear>
+    <numberOfPages>288</numberOfPages>
+    <authors>
+      <author>Terry Pratchett</author>
+      <author>Neil Gaiman</author>
+    </authors>
+  </Book>
+  <Book>
+    <title>The Hobbit</title>
+    <publishedYear>1937</publishedYear>
+    <numberOfPages>310</numberOfPages>
+    <authors>
+      <author>J.R.R. Tolkien</author>
+    </authors>
+  </Book>
+</BookShelf>
