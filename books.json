@@ -1,0 +1,37 @@
+{
+  "books": [
+    {
+      "title": "The Great Gatsby",
+      "publishedYear": 1925,
+      "numberOfPages": 180,
+      "authors": [
+        "F. Scott Fitzgerald"
+      ]
+    },
+    {
+      "title": "1984",
+      "publishedYear": 1949,
+      "numberOfPages": 328,
+      "authors": [
+        "George Orwell"
+      ]
+    },
+    {
+      "title": "Good Omens",
+      "publishedYear": 1990,
+      "numberOfPages": 288,
+      "authors": [
+        "Terry Pratchett",
+        "Neil Gaiman"
+      ]
+    },
+    {
+      "title": "The Hobbit",
+      "publishedYear": 1937,
+      "numberOfPages": 310,
+      "authors": [
+        "J.R.R. Tolkien"
+      ]
+    }
+  ]
+}
