@@ -67,3 +67,4 @@ public class ImageService {
         return name.substring(lastIndexOf + 1);
     }
 }
+

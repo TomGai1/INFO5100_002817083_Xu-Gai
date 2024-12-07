@@ -1,33 +1,28 @@
 package com.imagemanager.view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Separator;
 import com.imagemanager.controller.ImageController;
-import com.imagemanager.controller.ConversionController;
+import com.imagemanager.controller.ConversionController;  // 添加导入
 import com.imagemanager.model.ImageFile;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class MainView extends Application {
     private ImageController imageController;
-    private ConversionController conversionController;
+    private ConversionController conversionController;  // 添加成员变量
     private FlowPane imageContainer;
 
     @Override
     public void start(Stage primaryStage) {
         imageController = new ImageController();
-        conversionController = new ConversionController();
+        conversionController = new ConversionController();  // 初始化
 
         BorderPane root = new BorderPane();
 
@@ -71,25 +66,33 @@ public class MainView extends Application {
 
         List<File> files = fileChooser.showOpenMultipleDialog(null);
         if (files != null) {
-            imageController.loadImages(files);
-            updateImageDisplay();
+            try {
+                imageController.loadImages(files);
+                updateImageDisplay();
+            } catch (IOException e) {
+                showErrorAlert("Error Loading Image", e.getMessage());
+            }
         }
     }
 
     private void handleConversion(String format) {
         if (format == null || format.isEmpty()) {
-            showAlert("Error", "Please select a target format");
+            showErrorAlert("Error", "Please select a target format");
             return;
         }
 
         List<ImageFile> selectedImages = imageController.getLoadedImages();
         if (selectedImages.isEmpty()) {
-            showAlert("Error", "No images selected for conversion");
+            showErrorAlert("Error", "No images selected for conversion");
             return;
         }
 
-        List<File> convertedFiles = conversionController.convertImages(selectedImages, format);
-        showAlert("Success", "Converted " + convertedFiles.size() + " images successfully");
+        try {
+            List<File> convertedFiles = conversionController.convertImages(selectedImages, format);
+            showSuccessAlert("Successfully converted " + convertedFiles.size() + " images to " + format);
+        } catch (IOException e) {
+            showErrorAlert("Conversion Error", e.getMessage());
+        }
     }
 
     private void updateImageDisplay() {
@@ -100,9 +103,18 @@ public class MainView extends Application {
         }
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private void showErrorAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void showSuccessAlert(String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
     }

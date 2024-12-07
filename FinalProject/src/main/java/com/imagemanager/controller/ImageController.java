@@ -26,15 +26,16 @@ public class ImageController {
         loadedImages.add(imageFile);
     }
 
-    public void loadImages(List<File> files) {
+    public void loadImages(List<File> files) throws IOException {
         for (File file : files) {
             try {
                 loadImage(file);
             } catch (IOException e) {
                 // Handle error for individual file
-                System.err.println("Error loading image: " + file.getName());
-                e.printStackTrace();
+                throw new IOException("Error loading image " + file.getName() + ": " + e.getMessage(), e);
             }
         }
     }
+
+
 }
